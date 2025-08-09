@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jyothisham</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #010102;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .container {
+      background: rgb(123, 192, 174);
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>jyothisham</h1>
+    <p id="question">is your charecter real?</p>
+    <div class="buttons">
+      <button onclick="answer('yes')">Yes</button>
+      <button onclick="answer('no')">No</button>
+    </div>
+    <p id="result"></p>
+  </div>
+
+  <script>
+ let questions = [ { q: "Is your character real?", yes: 1, no: 21 }, // 0
+  { q: "Is your character still alive?", yes: 2, no: 4 }, // 1
+  { q: "Is your character known for technology or science?", yes: 3, no: 5 }, // 2
+  { guess: "Is your character Elon Musk?" }, // 3
+  { q: "Was your character a famous scientist?", yes: 20, no: 6 }, // 4
+  { q: "Is your character a sportsperson?", yes: 11, no: 7 }, // 5
+  { guess: "Is your character Taylor Swift?" }, // 6
+  { q: "Is your character a politician?", yes: 8, no: 9 }, // 7
+  { q: "Was your character a US President?", yes: 10, no: 12 }, // 8
+  { q: "Is your character an actor?", yes: 13, no: 15 }, // 9
+  { guess: "Is your character Barack Obama?" }, // 10
+  { guess: "Is your character Cristiano Ronaldo?" }, // 11
+  { guess: "Is your character Angela Merkel?" }, // 12
+  { q: "Has your character won an Oscar?", yes: 14, no: 16 }, // 13
+  { guess: "Is your character Leonardo DiCaprio?" }, // 14
+  { q: "Is your character known for comedy?", yes: 17, no: 18 }, // 15
+  { guess: "Is your character Emma Watson?" }, // 16
+  { guess: "Is your character Jim Carrey?" }, // 17
+  { q: "Is your character a historical figure?", yes: 19, no: 6 }, // 18
+  { guess: "Is your character prince harry?" }, // 19
+  { guess: "Is your character Albert Einstein?" }, // 20
+  { q: "Is your character from a movie franchise?", yes: 22, no: 41 }, // 21
+  { q: "Is your character someone with superpower?", yes: 23, no: 25 }, // 22
+  { q: "Does your character wear a suit of armor?", yes: 24, no: 26 }, // 23
+  { guess: "Is your character Iron Man?" }, // 24
+  { q: "Is your character from Marvel?", yes: 27, no: 28 }, // 25
+  { guess: "Is your character Superman?" }, // 26
+  { guess: "Is your character black widow?" }, // 27
+  { guess: "Is your character Batman?" }, // 28
+  { q: "Is your character animated?", yes: 29, no: 31 }, // 29
+  { q: "Is your character yellow?", yes: 30, no: 32 }, // 30
+  { guess: "Is your character Pikachu?" }, // 31
+  { guess: "Is your character Elsa?" }, // 32
+  { q: "Is your character a detective?", yes: 33, no: 35 }, // 33
+  { guess: "Is your character Sherlock Holmes?" }, // 34
+  { q: "Is your character from a video game?", yes: 36, no: 37 }, // 35
+  { guess: "Is your character Mario?" }, // 36
+  { q: "Is your character a wizard?", yes: 38, no: 39 }, // 37
+  { guess: "Is your character Harry Potter?" }, // 38
+  { q: "Is your character from Star Wars?", yes: 40, no: 6 }, // 39
+  { guess: "Is your character Darth Vader?" }, // 40
+  { q: "Is your character from a book?", yes: 42, no: 43 }, // 41
+  { guess: "Is your character shikari shambu?" }, // 42
+  { q: "Is your character a talking animal?", yes: 44, no: 45 }, // 43
+  { guess: "Is your character Winnie the Pooh?" }, // 44
+  { q: "Is your character a robot?", yes: 46, no: 47 }, // 45
+  { guess: "Is your character WALL-E?" }, // 46
+  { q: "Is your character from anime?", yes: 48, no: 49 }, // 47
+  { guess: "Is your character Goku?" }, // 48
+  { q: "Is your character a villain?", yes: 50, no: 51 }, // 49
+  { guess: "Is your character satan?" }, // 50
+  { guess: "Is your character Cinderella?" } // 51
+
+];
+  
+  // Initialize the game
+  
+
+    let currentQuestion = 0;
+
+    function answer(response) {
+      let q = questions[currentQuestion];
+
+      // If it's a guess question
+      if (q.guess) {
+        if (response === 'yes') {
+          document.getElementById('result').innerText = "Yay! I guessed it!";
+        } else {
+          document.getElementById('result').innerText = "Hmm... You win this time!";
+        }
+        document.getElementById('question').innerText = "";
+        document.querySelector('.buttons').style.display = "none";
+        return;
+      }
+
+      // Move to the next question
+      currentQuestion = response === 'yes' ? q.yes : q.no;
+      let next = questions[currentQuestion];
+
+      if (next.guess) {
+        document.getElementById('question').innerText = next.guess;
+      } else {
+        document.getElementById('question').innerText = next.q;
+      }
+    }
+  </script>
+</body>
+</html>
